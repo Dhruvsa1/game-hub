@@ -8,6 +8,7 @@ import {
   Text,
   Spinner,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import getCroppedImages from "../services/imageCropper";
 
@@ -18,16 +19,18 @@ interface Props {
 
 export const GenreList = ({ onSelect, selectedGenre }: Props) => {
   const { data, isLoading } = useGenres();
- 
 
   if (isLoading) return <Spinner />;
 
   return (
+    <>
+    <Heading fontSize={'2xl'} marginBottom={3}>Genres</Heading>
     <List>
       {data.map((genre) => (
         <ListItem key={genre.id}>
           <HStack paddingY={"5px"}>
             <Image
+            objectFit={'cover'}
               boxSize="32px"
               borderRadius={3}
               src={getCroppedImages(genre.image_background)}
@@ -35,8 +38,10 @@ export const GenreList = ({ onSelect, selectedGenre }: Props) => {
             <Button
               variant="link"
               fontSize="lg"
-              onClick={() => onSelect(genre) }
+              onClick={() => onSelect(genre)}
               fontWeight={selectedGenre?.id == genre.id ? "bold" : "normal"}
+              whiteSpace={"normal"}
+              textAlign={'left'}
             >
               {genre.name}
             </Button>
@@ -44,5 +49,6 @@ export const GenreList = ({ onSelect, selectedGenre }: Props) => {
         </ListItem>
       ))}
     </List>
+    </>
   );
 };
