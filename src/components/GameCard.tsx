@@ -24,13 +24,14 @@ const GameCard = ({ game }: Props) => {
       <Image src={getCroppedImages(game.background_image)} />
       <CardBody>
         <VStack alignItems={"left"} marginY={1}>
-          <Heading fontSize="2xl">{game.name}</Heading>
-          <HStack justifyContent={"space-between"}>
+        <HStack marginBottom={3} justifyContent={"space-between"}>
             <GameIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
             />
             <ScoreBadge score={game.metacritic}></ScoreBadge>
           </HStack>
+          <Heading fontSize="2xl">{game.name}</Heading>
+         
         </VStack>
       </CardBody>
     </Card>
